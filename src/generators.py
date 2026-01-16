@@ -1,3 +1,6 @@
+from itertools import chain
+
+
 def filter_by_currency(transactions: list[dict], statute):
     """Функцию, которая принимает на вход список транзакции и возвращает поочередно транзакции,
     где валюта операции соответствует заданной."""
@@ -25,8 +28,25 @@ def transaction_descriptions(transactions: list[dict]):
         return 'Ending...'
 
 
-def card_number_generator():
-    pass
+def card_number_generator(start, finish):
+    """ Функция, которая выдает номера банковских карт в формате XXXX ХХХХ ХХХХХ,
+     где X — цифра номера карты. Функция должна принимать начальное
+    и конечное значения для генерации диапазона номеров."""
+
+    for num in range(start, finish):
+        count_symbol_num =  len(str(num))
+        card_num = ('0' * (16 - count_symbol_num)) + str(num)
+
+        a = card_num[:4] + ' '
+        b = card_num[4:8] + ' '
+        c = card_num[8:12] + ' '
+        d = card_num[12:]
+
+        card_by_format = a + b + c + d
+
+        yield card_by_format
+
+
 
 
 transact = [{
@@ -91,11 +111,3 @@ transact = [{
        },
 ]
 
-usd_transactions = filter_by_currency(transact, "USD")
-for _ in range(3):
-    print(next(usd_transactions))
-
-
-descriptions = transaction_descriptions(transact)
-for _ in range(10):
-    print(next(descriptions))
