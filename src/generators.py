@@ -1,39 +1,32 @@
-from itertools import chain
+from typing import Any, Generator
 
 
-def filter_by_currency(transactions: list[dict], statute):
+def filter_by_currency(transactions: list[dict], statute: str) -> Generator[Any, None]:
     """Функцию, которая принимает на вход список транзакции и возвращает поочередно транзакции,
     где валюта операции соответствует заданной."""
 
-    count = 0
-    result = list(filter(lambda x: x["operationAmount"]["currency"]["name"] == statute, transactions))
-    while count < len(result):
-        yield result[count]
-        count += 1
-    return 'Ending...'
+    result = filter(lambda x: x["operationAmount"]["currency"]["code"] == statute, transactions)
+    for transaction in result:
+        yield transaction
 
 
 
-def transaction_descriptions(transactions: list[dict]):
+def transaction_descriptions(transactions: list[dict]) -> Generator[Any, None]:
     """Функция, которая принимает список словарей с транзакциями и
     возвращает описание каждой операции по очереди."""
 
-    count = 0
-
-    while count < len(transactions):
-        description = list((x["description"] for x in transactions))
-        yield description[count]
-        count += 1
-    else:
-        return 'Ending...'
+    description = list((x["description"] for x in transactions))
+    for name_transact in description:
+        yield name_transact
 
 
-def card_number_generator(start, finish):
+
+def card_number_generator(start: int, finish: int) -> Any:
     """ Функция, которая выдает номера банковских карт в формате XXXX ХХХХ ХХХХХ,
      где X — цифра номера карты. Функция должна принимать начальное
     и конечное значения для генерации диапазона номеров."""
 
-    for num in range(start, finish):
+    for num in range(start, finish + 1):
         count_symbol_num =  len(str(num))
         card_num = ('0' * (16 - count_symbol_num)) + str(num)
 
@@ -45,69 +38,3 @@ def card_number_generator(start, finish):
         card_by_format = a + b + c + d
 
         yield card_by_format
-
-
-
-
-transact = [{
-          "id": 939719570,
-          "state": "EXECUTED",
-          "date": "2018-06-30T02:08:58.425572",
-          "operationAmount": {
-              "amount": "9824.07",
-              "currency": {
-                  "name": "USD",
-                  "code": "USD"
-              }
-          },
-          "description": "Перевод организации",
-          "from": "Счет 75106830613657916952",
-          "to": "Счет 11776614605963066702"
-      },
-      {
-              "id": 142264268,
-              "state": "EXECUTED",
-              "date": "2019-04-04T23:20:05.206878",
-              "operationAmount": {
-                  "amount": "79114.93",
-                  "currency": {
-                      "name": "USD",
-                      "code": "USD"
-                  }
-              },
-              "description": "Перевод со счета на счет",
-              "from": "Счет 19708645243227258542",
-              "to": "Счет 75651667383060284188"
-       },
-      {
-              "id": 142222222,
-              "state": "EXECUTED",
-              "date": "2019-04-04T23:20:05.206878",
-              "operationAmount": {
-                  "amount": "79114.93",
-                  "currency": {
-                      "name": "USDT",
-                      "code": "USDT"
-                  }
-              },
-              "description": "Перевод со счета на счет",
-              "from": "Счет 19708645243227258542",
-              "to": "Счет 75651667383060284188"
-       },
-      {
-              "id": 142555568,
-              "state": "EXECUTED",
-              "date": "2019-04-04T23:20:05.206878",
-              "operationAmount": {
-                  "amount": "79114.93",
-                  "currency": {
-                      "name": "RUB",
-                      "code": "RUB"
-                  }
-              },
-              "description": "Перевод организации",
-              "from": "Счет 19708645243227258542",
-              "to": "Счет 75651667383060284188"
-       },
-]
-
