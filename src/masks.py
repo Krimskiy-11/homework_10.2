@@ -1,4 +1,4 @@
-def get_mask_card_number(card_num: [str,int]) -> str:
+def get_mask_card_number(card_num: [str, int]) -> str:
     """Принимает на вход номер карты и возвращает ее маску"""
 
     if card_num is None:
@@ -34,4 +34,3 @@ def get_mask_account(total_num: [str, int]) -> str:
         mask = str_total_num.replace(str_total_num[:-4], "**")
 
         return mask
-

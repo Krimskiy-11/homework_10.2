@@ -29,4 +29,3 @@ def sort_by_date(my_lists: list[dict], reverse: bool = True) -> Any:
         else:
             return 'Incorrect data entry'
     return 'Incorrect data entry'
-

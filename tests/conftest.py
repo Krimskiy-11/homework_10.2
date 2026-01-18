@@ -5,14 +5,15 @@ import pytest
 def cards():
     return '7000792289606361'
 
+
 @pytest.fixture
 def account():
     return '73654108430135874305'
 
+
 @pytest.fixture
 def transactions():
-    return (
-    [
+    return ([
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -88,5 +89,4 @@ def transactions():
             "from": "Visa Platinum 1246377376343588",
             "to": "Счет 14211924144426031657"
         }
-    ]
-)
+    ])
