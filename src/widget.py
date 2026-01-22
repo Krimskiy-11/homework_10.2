@@ -47,4 +47,3 @@ def get_date(date: str) -> str:
             return 'There is no such date'
 
         return date
-

@@ -1,7 +1,6 @@
 import pytest
 
 from src.masks import get_mask_card_number, get_mask_account
-from tests.conftest import cards, account
 
 
 @pytest.mark.parametrize('card, result', [
@@ -12,6 +11,7 @@ from tests.conftest import cards, account
 ])
 def test_get_mask_card_number(card, result):
     assert get_mask_card_number(card) == result
+
 
 def test_get_mask_card_number_1(cards):
     assert get_mask_card_number(cards) == '7000 79** **** 6361'
@@ -25,6 +25,7 @@ def test_get_mask_card_number_1(cards):
 ])
 def test_get_mask_account(account_num, result):
     assert get_mask_account(account_num) == result
+
 
 def test_get_mask_account_1(account):
     assert get_mask_account(account) == '**4305'
