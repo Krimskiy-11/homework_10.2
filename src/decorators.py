@@ -3,11 +3,13 @@ from time import time
 from typing import Any
 
 
-def log(filename: str) -> Any:
+def log(filename: str| None) -> Any:
+    """Декоратор, который логирует начало и конец выполнения функции,
+     а также ее результаты или возникшие ошибки"""
+
     def wrapper(function: Any):
         @wraps(function)
         def inner(*args: int, **kwargs: int):
-            with open(filename, 'a', encoding='utf-8') as file:
                 try:
                     time1 = time()
                     func_start = 'Function start'
@@ -15,17 +17,22 @@ def log(filename: str) -> Any:
                     func_stop = 'Function stop'
                     time2 = time()
                     log_message = (f"Start time: {time1}\n"
-                                   f"{func_start}\n"
-                                   f"Inputs: {args}, {kwargs}\n"
-                                   f"Result: {result}\n"
-                                   f"{func_stop}\n"
-                                   f"End time: {time2}\n")
+                                           f"{func_start}\n"
+                                           f"Inputs: {args}, {kwargs}\n"
+                                           f"Result: {result}\n"
+                                           f"{func_stop}\n"
+                                           f"End time: {time2}\n")
                     print(log_message)
-                    file.write(f'{function.__name__} ok\n')
-                    return result
+                    if filename:
+                        with open(filename, 'a', encoding='utf-8') as file:
+                            file.write(f'{function.__name__} ok\n')
                 except Exception as e:
-                    log_message_exception = f"Error: {e}. Inputs: {args}, {kwargs}"
-                    print(log_message_exception)
-                    file.write(log_message_exception)
+                    log_message_exception = f"Error: {type(e).__name__}. Inputs: {args}, {kwargs}"
+                    if filename:
+                        with open(filename, 'a')as file:
+                            file.write(log_message_exception)
+                            print(log_message_exception)
+                    else:
+                        print(log_message_exception)
         return inner
     return wrapper
