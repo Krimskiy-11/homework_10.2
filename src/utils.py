@@ -21,3 +21,4 @@ def get_transactions(json_file: str):
                 return transactions
     except FileNotFoundError:
         return []
+

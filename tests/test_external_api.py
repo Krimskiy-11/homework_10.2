@@ -28,3 +28,4 @@ def test_sum_transaction_with_EUR(mock_get):
 
     result = sum_transaction(transaction)
     assert result == 88.5
+
