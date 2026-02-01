@@ -17,7 +17,7 @@ def my_function(x: int, y: int) -> Any:
         (1, 0, "Error: ZeroDivisionError. Inputs: (1, 0), {}\n"),
         (1, "1", "Error: TypeError. Inputs: (1, '1'), " "{}\n"),
         ("1", "1", "Error: TypeError. Inputs: ('1', " "'1'), {}\n"),
-        (1, None, "Error: TypeError. Inputs: (1, " "None), {}\n")
+        (1, None, "Error: TypeError. Inputs: (1, " "None), {}\n"),
     ],
 )
 def test_log_negative(capsys, a, b, result):
@@ -32,8 +32,8 @@ def test_log_negative(capsys, a, b, result):
         (10, 2, "my_function ok\n"),
         (1, 1, "my_function ok\n"),
         (200, 300, "my_function ok\n"),
-        (132415, 0, "Error: ZeroDivisionError. Inputs: (132415, 0), {}")
-    ]
+        (132415, 0, "Error: ZeroDivisionError. Inputs: (132415, 0), {}"),
+    ],
 )
 def test_log_positive(a, b, result):
     with open("mylog.txt", "w") as file:
