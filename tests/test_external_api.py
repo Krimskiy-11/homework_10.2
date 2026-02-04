@@ -9,24 +9,22 @@ def test_sum_transaction_with_RUB(transaction_RUB):
 
 @patch("requests.get")
 def test_sum_transaction_with_USD(mock_get):
-    mock_response = Mock()
-    mock_response.json.return_value = {"result": 74.5}
-    mock_get.return_value = mock_response
+    mock_get.return_value.json.return_value = {"result": 74.5}
 
     transaction = {"operationAmount": {"amount": "1", "currency": {"code": "USD"}}}
 
     result = sum_transaction(transaction)
     assert result == 74.5
+    mock_get.assert_called_once()
 
 
 @patch("requests.get")
 def test_sum_transaction_with_EUR(mock_get):
-    mock_response = Mock()
-    mock_response.json.return_value = {"result": 88.5}
-    mock_get.return_value = mock_response
+    mock_get.return_value.json.return_value = {"result": 88.5}
 
     transaction = {"operationAmount": {"amount": "2", "currency": {"code": "EUR"}}}
 
     result = sum_transaction(transaction)
     assert result == 88.5
+    mock_get.assert_called_once()
 

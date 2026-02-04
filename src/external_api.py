@@ -46,4 +46,3 @@ def sum_transaction(transaction):
 #
 # tr = random_transact(get_transactions('operations.json'))
 # print(sum_transaction(tr))
-
