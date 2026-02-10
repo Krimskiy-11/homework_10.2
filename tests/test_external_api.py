@@ -1,4 +1,4 @@
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 from src.external_api import sum_transaction
 
@@ -27,4 +27,3 @@ def test_sum_transaction_with_EUR(mock_get):
     result = sum_transaction(transaction)
     assert result == 88.5
     mock_get.assert_called_once()
-

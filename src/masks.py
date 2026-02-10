@@ -1,9 +1,13 @@
 import logging
+import os
 
+
+HIGH_PATH = os.path.dirname(os.path.dirname(__file__))  # C:\projects\Project_Homework10.2
+PATH_LOGS = os.path.join(HIGH_PATH, "logs")  # C:\projects\Project_Homework10.2\logs
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s: %(message)s',
-                    filename='logs/masks.log',
+                    filename=os.path.join(PATH_LOGS, "masks.log"),
                     filemode='w')
 
 logger = logging.getLogger('masks')

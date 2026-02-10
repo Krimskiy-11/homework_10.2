@@ -2,16 +2,16 @@ import json
 import os
 import logging
 
+HIGH_PATH = os.path.dirname(os.path.dirname(__file__))  # C:\projects\Project_Homework10.2
+PATH_DATA = os.path.join(HIGH_PATH, "data")  # C:\projects\Project_Homework10.2\data
+PATH_LOGS = os.path.join(HIGH_PATH, "logs")  # C:\projects\Project_Homework10.2\logs
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s: %(message)s',
-                    filename='logs/utils.log',
+                    filename=os.path.join(PATH_LOGS, "utils.log"),
                     filemode='w')
 
 logger = logging.getLogger('utils')
-
-HIGH_PATH = os.path.dirname(os.path.dirname(__file__))  # C:\projects\Project_Homework10.2
-PATH_DATA = os.path.join(HIGH_PATH, "data")  # C:\projects\Project_Homework10.2\data
 
 
 def get_transactions(json_file: str):

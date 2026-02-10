@@ -61,7 +61,7 @@ def transactions():
         },
     ]
 
-  
+
 @pytest.fixture
 def transaction_RUB():
     return {
