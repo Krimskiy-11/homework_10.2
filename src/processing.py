@@ -15,8 +15,8 @@ def filter_by_state(my_lists: list[dict], state: str = "EXECUTED") -> Any:
 
             return result_list
         else:
-            return 'Incorrect data entry'
-    return 'Incorrect data entry'
+            return "Incorrect data entry"
+    return "Incorrect data entry"
 
 
 def sort_by_date(my_lists: list[dict], reverse: bool = True) -> Any:
@@ -27,5 +27,5 @@ def sort_by_date(my_lists: list[dict], reverse: bool = True) -> Any:
             sorted_dict = sorted(my_lists, key=lambda i: i["date"], reverse=reverse)
             return sorted_dict
         else:
-            return 'Incorrect data entry'
-    return 'Incorrect data entry'
+            return "Incorrect data entry"
+    return "Incorrect data entry"
