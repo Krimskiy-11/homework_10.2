@@ -5,8 +5,8 @@ def mask_account_card(card_account: str) -> str:
     """Функция принимает тип и номер карты или счета, и возвращает строку с
     замаскированным номером"""
 
-    if card_account is None or card_account == '':
-        return 'Incorrect data entry'
+    if card_account is None or card_account == "":
+        return "Incorrect data entry"
     else:
         list_str_account = card_account.split()
 
@@ -24,9 +24,9 @@ def mask_account_card(card_account: str) -> str:
                     mask_account = get_mask_card_number(i)
                     mask.append(mask_account)
                 else:
-                    return 'Incorrect data entry'
+                    return "Incorrect data entry"
 
-        ending_mask = ' '.join(mask)
+        ending_mask = " ".join(mask)
 
         return ending_mask
 
@@ -34,16 +34,16 @@ def mask_account_card(card_account: str) -> str:
 def get_date(date: str) -> str:
     """Функция принимает исходную форму даты и возвращает более привычную"""
 
-    if date is None or date == '':
-        return 'Incorrect data entry'
+    if date is None or date == "":
+        return "Incorrect data entry"
     else:
         normal_date = date[:10]
         list_normal_date = normal_date.split("-")
         date = f"{list_normal_date[2]}.{list_normal_date[1]}.{list_normal_date[0]}"
 
-        if date[:5] == '30.02' or date[:5] == '31.02':
-            return 'There is no such date'
+        if date[:5] == "30.02" or date[:5] == "31.02":
+            return "There is no such date"
         elif int(date[:2]) > 31:
-            return 'There is no such date'
+            return "There is no such date"
 
         return date
