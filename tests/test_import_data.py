@@ -1,3 +1,4 @@
+import json
 from unittest.mock import patch
 
 import pandas as pd
@@ -14,7 +15,9 @@ def test_csv_data(mock_get):
 
     mock_get.return_value = fake_df
     result = import_data.get_csv_data("transactions.csv")
-    expected = fake_df.to_json(orient='records', indent=4, force_ascii=False)
+
+    interim = fake_df.to_json(orient='records', indent=4, force_ascii=False)
+    expected = json.loads(interim)
 
     assert result == expected
 
@@ -28,6 +31,8 @@ def test_excel_data(mock_get):
 
     mock_get.return_value = fake_df
     result = import_data.get_excel_data("transactions_excel.xlsx")
-    expected = fake_df.to_json(orient='records', indent=4, force_ascii=False)
+
+    interim = fake_df.to_json(orient='records', indent=4, force_ascii=False)
+    expected = json.loads(interim)
 
     assert result == expected

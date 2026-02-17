@@ -1,3 +1,4 @@
+import json
 import os
 
 import pandas as pd
@@ -12,7 +13,8 @@ def get_csv_data(file):
 
     path_csv = os.path.join(PATH_DATA, file)  # ~\Project_Homework10.2\data\transactions.csv
     reading_file = pd.read_csv(path_csv, delimiter=";")
-    return reading_file.to_json(orient="records", indent=4, force_ascii=False)
+    json_csv_lists = reading_file.to_json(orient="records", indent=4, force_ascii=False)
+    return json.loads(json_csv_lists)
 
 
 def get_excel_data(file):
@@ -21,4 +23,5 @@ def get_excel_data(file):
 
     path_xlsx = os.path.join(PATH_DATA, file)  # ~\Project_Homework10.2\data\transactions_excel.xlsx
     reading_file = pd.read_excel(path_xlsx)
-    return reading_file.to_json(orient="records", indent=4, force_ascii=False)
+    json_excel_lists = reading_file.to_json(orient="records", indent=4, force_ascii=False)
+    return json.loads(json_excel_lists)
