@@ -4,30 +4,30 @@ import requests
 from dotenv import load_dotenv
 
 load_dotenv()
-API_KEY = os.getenv('API_KEY')
+API_KEY = os.getenv("API_KEY")
 
 
 def sum_transaction(transaction):
-    path_code = transaction['operationAmount']['currency']['code']
+    path_code = transaction["operationAmount"]["currency"]["code"]
 
     if path_code == "RUB":
-        return transaction['operationAmount']['amount']
+        return transaction["operationAmount"]["amount"]
 
     elif path_code == "USD":
         to = "RUB"
         from_ = "USD"
-        amount = transaction['operationAmount']['amount']
+        amount = transaction["operationAmount"]["amount"]
         url = f"https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from_}&amount={amount}"
         headers = {"apikey": API_KEY}
 
         response = requests.get(url, headers=headers)
         result = response.json()
-        return result['result']
+        return result["result"]
 
     elif path_code == "EUR":
         to = "RUB"
         from_ = "EUR"
-        amount = transaction['operationAmount']['amount']
+        amount = transaction["operationAmount"]["amount"]
 
         url = f"https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from_}&amount={amount}"
 
@@ -35,10 +35,11 @@ def sum_transaction(transaction):
 
         response = requests.get(url, headers=headers)
         result = response.json()
-        return result['result']
+        return result["result"]
 
     else:
         return None
+
 
 # def random_transact(transactions: list):
 #     return random.choice(transactions)
